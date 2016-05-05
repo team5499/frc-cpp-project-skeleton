@@ -1,18 +1,15 @@
-include(CMakeForceCompiler)
-set(CMAKE_SYSTEM_NAME Linux)
-#set processor
-
-find_program(ARM_CC arm-frc-linux-gnueabi-gcc)
-find_program(ARM_CXX arm-frc-linux-gnueabi-g++)
-
-cmake_force_c_compiler(${ARM_CC} GNU)
-cmake_force_cxx_compiler(${ARM_CXX} GNU)
-
-set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -fmessage-length=0")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -fmessage-length=0")
-
-string(REGEX REPLACE ";" " " CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-string(REGEX REPLACE ";" " " CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
+find_file(ARM_TOOLCHAIN arm-toolchain.cmake PATHS ${CMAKE_CURRENT_SOURCE_DIR} NO_DEFAULT_PATH)
+if(${ARM_TOOLCHAIN} STREQUAL ARM_TOOLCHAIN-NOTFOUND)
+    message(STATUS "arm-toolchain not found... downloading from usfirst.collab.net...")
+    execute_process(COMMAND wget
+                    -O arm-toolchain.cmake
+                    "https://usfirst.collab.net/gerrit/gitweb?p=allwpilib.git;a=blob_plain;f=arm-toolchain.cmake;hb=HEAD")
+    find_file(ARM_TOOLCHAIN arm-toolchain.cmake PATHS ${CMAKE_CURRENT_SOURCE_DIR} NO_DEFAULT_PATH)
+    if(${ARM_TOOLCHAIN} STREQUAL ARM_TOOLCHAIN-NOTFOUND)
+        message(FATAL_ERROR "arm-toolchain still not found. Aborting.")
+    endif()
+endif()
+set(CMAKE_TOOLCHAIN_FILE ${ARM_TOOLCHAIN})
 
 set(WPILIB_HOME $ENV{HOME}/wpilib/cpp/current)
 include_directories(SYSTEM ${WPILIB_HOME}/include)

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-set(CMAKE_TOOLCHAIN_FILE frc-toolchain.cmake)
+include(frc.cmake)
 
 project(frc-cpp-project-skeleton)
 
