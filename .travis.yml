@@ -3,8 +3,8 @@ language: cpp
 compiler: gcc
 
 before_script:
-    - sudo apt-add-repository ppa:wpilib/toolchain
-    - sudo apt update
-    - sudo apt install frc-toolchain
+    - sudo apt-add-repository -y ppa:wpilib/toolchain
+    - sudo apt-get -qq update
+    - sudo apt install -y frc-toolchain
 
 script: cmake . && make ci-test
