@@ -1,4 +1,10 @@
+dist: trusty
 language: cpp
 compiler: gcc
-script: cmake . && make ci-test
 
+before_script:
+    - sudo apt-add-repository ppa:wpilib/toolchain
+    - sudo apt update
+    - sudo apt install frc-toolchain
+
+script: cmake . && make ci-test
