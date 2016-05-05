@@ -2,7 +2,7 @@ find_file(ARM_TOOLCHAIN arm-toolchain.cmake PATHS ${CMAKE_CURRENT_SOURCE_DIR} NO
 if(${ARM_TOOLCHAIN} STREQUAL ARM_TOOLCHAIN-NOTFOUND)
     message(STATUS "arm-toolchain not found... downloading from usfirst.collab.net...")
     execute_process(COMMAND wget
-                    -O arm-toolchain.cmake
+                    -O ${CMAKE_CURRENT_SOURCE_DIR}/arm-toolchain.cmake
                     "https://usfirst.collab.net/gerrit/gitweb?p=allwpilib.git;a=blob_plain;f=arm-toolchain.cmake;hb=HEAD")
     find_file(ARM_TOOLCHAIN arm-toolchain.cmake PATHS ${CMAKE_CURRENT_SOURCE_DIR} NO_DEFAULT_PATH)
     if(${ARM_TOOLCHAIN} STREQUAL ARM_TOOLCHAIN-NOTFOUND)
