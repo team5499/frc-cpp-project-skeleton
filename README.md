@@ -1,5 +1,5 @@
 # frc-cpp-project-skeleton
-This is a skeleton for FRC C++ projects using CMake.  Example usage:
+This is a skeleton for FRC C++ projects using CMake.  Fork me!  Example usage:
 ```
 cmake .
 make # make your robot code
