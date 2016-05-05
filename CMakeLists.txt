@@ -9,7 +9,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 # For quick list run
 # find src -iname "*.cpp"
 # in project root
-set(SOURCE_FILES src/main.cpp)
+set(SOURCE_FILES src/Robot.cpp)
 add_frc_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 # Test target
