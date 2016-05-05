@@ -2,7 +2,8 @@
 This is a skeleton for FRC C++ projects using CMake.  Example usage:
 ```
 cmake .
-make frc-cpp-project-skeleton # configure project name in CMakeLists.txt
-make frc-cpp-project-skeleton-deploy # configure team number in CMakeLists.txt
-make frc-cpp-project-skeleton-doxygen # to build docs
+make # make your robot code
+make deploy # deploy your robot code, configure team number in CMakeLists.txt
+make doxygen # build doxygen docs
+make ci-test # run tests, see test/
 ```
