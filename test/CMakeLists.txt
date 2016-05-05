@@ -5,4 +5,4 @@ project(ci-test)
 # For quick list run
 # find src -iname "*.cpp"
 set(SOURCE_FILES src/main.cpp)
-add_frc_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_executable(${PROJECT_NAME} ${SOURCE_FILES})
