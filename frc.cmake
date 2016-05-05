@@ -12,15 +12,15 @@ endif()
 set(CMAKE_TOOLCHAIN_FILE ${ARM_TOOLCHAIN})
 
 set(WPILIB_HOME $ENV{HOME}/wpilib/cpp/current)
-include_directories(SYSTEM ${WPILIB_HOME}/include)
-link_directories(SYSTEM ${WPILIB_HOME}/lib)
+include_directories(${WPILIB_HOME}/include)
+link_directories(${WPILIB_HOME}/lib)
 
 function(add_frc_executable _NAME)
     add_executable(${ARGV})
     target_link_libraries(${_NAME} libwpi.so)
 endfunction()
 
-function(add_frc_deploy TEAM_NUMBER ROBOT_EXECUTABLE)
+function(add_frc_deploy TARGET_NAME TEAM_NUMBER ROBOT_EXECUTABLE)
     set(TARGET roboRIO-${TEAM_NUMBER}-FRC.local)
     set(USERNAME lvuser)
     set(DEPLOY_DIR /home/lvuser)
@@ -29,7 +29,7 @@ function(add_frc_deploy TEAM_NUMBER ROBOT_EXECUTABLE)
     find_program(SCP_EXECUTABLE scp)
 
     if(SSH_EXECUTABLE AND SCP_EXECUTABLE)
-        add_custom_target(${PROJECT_NAME}-deploy
+        add_custom_target(${TARGET_NAME}
                 COMMAND ssh
                 ${USERNAME}@${TARGET}
                 rm -f ${DEPLOY_DIR}/FRCUserProgram
@@ -54,6 +54,7 @@ function(add_frc_deploy TEAM_NUMBER ROBOT_EXECUTABLE)
                 sync
 
                 DEPENDS ${PROJECT_NAME})
+        set_target_properties(${TARGET_NAME} PROPERTIES EXCLUDE_FROM_ALL TRUE)
     else()
         message(FATAL_ERROR "Could not deploy! ssh/scp executables not found!")
     endif()
