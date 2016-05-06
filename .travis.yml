@@ -3,15 +3,15 @@ language: cpp
 compiler: gcc
 
 before_script:
-    - sudo apt-add-repository -y ppa:wpilib/toolchain
+    - sudo apt-add-repository -qq -y ppa:wpilib/toolchain
     - sudo apt-get -qq update
-    - sudo apt install -y frc-toolchain
+    - sudo apt install -qq -y frc-toolchain
     - mkdir .wpilib
-    - wget -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
-    - unzip .wpilib/release.zip -d .wpilib
-    - unzip .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar -d .wpilib
+    - wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
+    - unzip -qq .wpilib/release.zip -d .wpilib
+    - unzip -qq .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar -d .wpilib
     - mkdir -p ~/wpilib/cpp/current
-    - unzip .wpilib/resources/cpp.zip -d ~/wpilib/cpp/current
+    - unzip -qq .wpilib/resources/cpp.zip -d ~/wpilib/cpp/current
 
 script:
     - cmake .
