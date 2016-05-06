@@ -1,11 +1,10 @@
-#include <cstdlib>
-#include <iostream>
+#define BOOST_TEST_MODULE
+#include <boost/test/included/unit_test.hpp>
 #include "Robot.h"
 
-int main(int argc, char** argv) {
-    std::cout << "Starting tests..." << std::endl;
-    std::cout << "Constructing a Robot" << std::endl;
-    Robot testRobot;
-    std::cout << "Exiting with success, edit your tests!" << std::endl;
-    return EXIT_SUCCESS;
+BOOST_AUTO_TEST_CASE(construct_robot)
+{
+    Robot* robot = new Robot();
+    BOOST_CHECK(robot != nullptr);
+    delete robot;
 }
