@@ -7,11 +7,11 @@ before_script:
     - sudo apt-get update
     - sudo apt-get -y install frc-toolchain
     - mkdir .wpilib
-    - wget -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
-    - unzip .wpilib/release.zip -d .wpilib
-    - unzip .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar -d .wpilib
+    - wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
+    - unzip -q -d .wpilib .wpilib/release.zip
+    - unzip -q -d .wpilib .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar
     - mkdir -p ~/wpilib/cpp/current
-    - unzip .wpilib/resources/cpp.zip -d ~/wpilib/cpp/current
+    - unzip -q -d ~/wpilib/cpp/current .wpilib/resources/cpp.zip
 
 script:
     - cmake .
