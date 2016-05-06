@@ -11,7 +11,7 @@ before_script:
     - unzip .wpilib/release.zip -d .wpilib
     - unzip .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar -d .wpilib
     - mkdir -p ~/wpilib/cpp/current
-    - unzip .wpilib/resources/cpp.zip -d ~/wpilib/current
+    - unzip .wpilib/resources/cpp.zip -d ~/wpilib/cpp/current
     - rm -rf .wpilib
 
 script:
