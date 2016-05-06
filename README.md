@@ -8,7 +8,9 @@ make doxygen # build doxygen docs
 make ci-test # run tests, see test/
 ```
 
-The skeleton is Travis CI-ready and will automatically install the FRC toolchain and WPILib on the Travis instance.  The default script is:
+The ci-test target depends on Boost.Test.
+
+The skeleton is Travis CI-ready and will automatically install the FRC toolchain, WPILib, and Boost.Test on the Travis instance.  The default script is:
 ```
 cmake .
 make

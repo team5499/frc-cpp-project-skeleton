@@ -1,19 +1,25 @@
-dist: trusty
+sudo: false
 language: cpp
 compiler: gcc
-
-before_script:
-    - sudo apt-add-repository -y ppa:wpilib/toolchain
-    - sudo apt-get update
-    - sudo apt-get -y install frc-toolchain libboost-test-dev
-    - mkdir .wpilib
-    - wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
-    - unzip -q -d .wpilib .wpilib/release.zip
-    - unzip -q -d .wpilib .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar
-    - mkdir -p ~/wpilib/cpp/current
-    - unzip -q -d ~/wpilib/cpp/current .wpilib/resources/cpp.zip
+addons:
+    apt:
+        sources:
+        - wpilib/toolchain
+        - ubuntu-toolchain-r/test
+        packages:
+        - gcc-6
+        - frc-toolchain
+        - libboost-test-dev
+install:
+- if [[ "$CXX" == "g++" ]]l then export CXX="g++-6" CC="gcc-6"; fi
+- mkdir .wpilib
+- wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
+- unzip -q -d .wpilib .wpilib/release.zip
+- unzip -q -d .wpilib .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar
+- mkdir -p ~/wpilib/cpp/current
+- unzip -q -d ~/wpilib/cpp/current .wpilib/resources/cpp.zip
 
 script:
-    - cmake .
-    - make
-    - make ci-test
+- cmake .
+- make
+- make ci-test
