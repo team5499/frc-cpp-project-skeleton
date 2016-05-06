@@ -4,8 +4,8 @@ compiler: gcc
 
 before_script:
     - sudo apt-add-repository -y ppa:wpilib/toolchain > /dev/null
-    - sudo apt-get update -qq
-    - sudo apt-get install -qq -y frc-toolchain
+    - sudo apt-get -qq update
+    - sudo apt-get -qq install frc-toolchain
     - mkdir .wpilib
     - wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
     - unzip -qq .wpilib/release.zip -d .wpilib
