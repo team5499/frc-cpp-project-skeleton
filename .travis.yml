@@ -6,5 +6,15 @@ before_script:
     - sudo apt-add-repository -y ppa:wpilib/toolchain
     - sudo apt-get -qq update
     - sudo apt install -y frc-toolchain
+    - mkdir .wpilib
+    - wget -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
+    - unzip .wpilib/release.zip -d .wpilib
+    - unzip .wpilib/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp*.jar -d .wpilib
+    - mkdir -p ~/wpilib/cpp/current
+    - unzip .wpilib/resources/cpp.zip -d ~/wpilib/current
+    - rm -rf .wpilib
 
-script: cmake . && make ci-test
+script:
+    - cmake .
+    - make
+    - make ci-test
