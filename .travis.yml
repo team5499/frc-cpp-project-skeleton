@@ -3,9 +3,9 @@ language: cpp
 compiler: gcc
 
 before_script:
-    - sudo apt-add-repository -qq -y ppa:wpilib/toolchain
-    - sudo apt-get -qq update
-    - sudo apt install -qq -y frc-toolchain
+    - sudo apt-add-repository -y ppa:wpilib/toolchain > /dev/null
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq -y frc-toolchain
     - mkdir .wpilib
     - wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
     - unzip -qq .wpilib/release.zip -d .wpilib
