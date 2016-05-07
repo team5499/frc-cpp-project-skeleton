@@ -17,7 +17,7 @@ before_install:
 - sudo apt-add-repository -y ppa:wpilib/toolchain
 - sudo apt-add-repository -y ppa:ubuntu-toolchain-r/test
 - sudo apt-get update
-- sudo apt-get -y install gcc-5 frc-toolchain libboost-test-dev
+- sudo apt-get -y install gcc-5 g++-5 frc-toolchain libboost-test-dev
 install:
 - if [[ "$CXX" == "g++" ]]; then export CXX="g++-5" CC="gcc-5"; fi
 - mkdir .wpilib
