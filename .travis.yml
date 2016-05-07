@@ -4,14 +4,14 @@ compiler: gcc
 addons:
     apt:
         sources:
-        - wpilib/toolchain
-        - ubuntu-toolchain-r/test
+        - wpilib-toolchain
+        - ubuntu-toolchain-r-test
         packages:
-        - gcc-6
+        - gcc-5
         - frc-toolchain
         - libboost-test-dev
 install:
-- if [[ "$CXX" == "g++" ]]l then export CXX="g++-6" CC="gcc-6"; fi
+- if [[ "$CXX" == "g++" ]]; then export CXX="g++-5" CC="gcc-5"; fi
 - mkdir .wpilib
 - wget -q -O .wpilib/release.zip http://first.wpi.edu/FRC/roborio/release.zip
 - unzip -q -d .wpilib .wpilib/release.zip
