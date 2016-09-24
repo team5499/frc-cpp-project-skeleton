@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 include(frc.cmake)
 
-project(frc-cpp-project-skeleton)
+project(chezy-emergency)
+set(TEAM_NUMBER 5499)
 
 # Robot target
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
@@ -25,7 +26,7 @@ ExternalProject_Add(ci-test
 set_target_properties(ci-test PROPERTIES EXCLUDE_FROM_ALL TRUE)
 
 # Deploy target
-add_frc_deploy(deploy 5499 $<TARGET_FILE:${PROJECT_NAME}>)
+add_frc_deploy(deploy ${TEAM_NUMBER} $<TARGET_FILE:${PROJECT_NAME}>)
 
 # Doxygen target
 find_package(Doxygen)
