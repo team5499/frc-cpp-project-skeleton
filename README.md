@@ -18,5 +18,4 @@ make ci-test
 ```  
 
 TODO:
-* Test that builds and deployment work on an actual roboRIO
 * Improve test/wpilib-harness and move it to its own repository
