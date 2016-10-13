@@ -11,7 +11,8 @@ if(${ARM_TOOLCHAIN} STREQUAL ARM_TOOLCHAIN-NOTFOUND)
 endif()
 set(CMAKE_TOOLCHAIN_FILE ${ARM_TOOLCHAIN})
 
-set(WPILIB_HOME $ENV{HOME}/wpilib/cpp/current)
+set(WPILIB_HOME /usr/wpilib)
+
 include_directories(${WPILIB_HOME}/include)
 link_directories(${WPILIB_HOME}/lib)
 
@@ -21,41 +22,8 @@ function(add_frc_executable _NAME)
 endfunction()
 
 function(add_frc_deploy TARGET_NAME TEAM_NUMBER ROBOT_EXECUTABLE)
-    set(TARGET roboRIO-${TEAM_NUMBER}-FRC.local)
-    set(USERNAME lvuser)
-    set(DEPLOY_DIR /home/lvuser)
-
-    find_program(SSH_EXECUTABLE ssh)
-    find_program(SCP_EXECUTABLE scp)
-
-    if(SSH_EXECUTABLE AND SCP_EXECUTABLE)
-        add_custom_target(${TARGET_NAME}
-                COMMAND ssh
-                ${USERNAME}@${TARGET}
-                rm -f ${DEPLOY_DIR}/FRCUserProgram
-
-                COMMAND scp
-                ${ROBOT_EXECUTABLE}
-                ${USERNAME}@${TARGET}:${DEPLOY_DIR}/FRCUserProgram
-
-                COMMAND ssh
-                ${USERNAME}@${TARGET}
-                killall -q netconsole-host || :
-
-                COMMAND scp
-                ${WPILIB_HOME}/ant/robotCommand
-                ${USERNAME}@${TARGET}:${DEPLOY_DIR}
-
-                COMMAND ssh
-                ${USERNAME}@${TARGET}
-                . /etc/profile.d/natinst-path.sh;
-                chmod a+x ${DEPLOY_DIR}/FRCUserProgram;
-                /usr/local/frc/bin/frcKillRobot.sh -t -r;
-                sync
-
-                DEPENDS ${PROJECT_NAME})
-        set_target_properties(${TARGET_NAME} PROPERTIES EXCLUDE_FROM_ALL TRUE)
-    else()
-        message(FATAL_ERROR "Could not deploy! ssh/scp executables not found!")
-    endif()
+    add_custom_target(${TARGET_NAME}
+	COMMAND sh -c "./deploy.sh ${TEAM_NUMBER} ${ROBOT_EXECUTABLE} ${WPILIB_HOME}/ant/robotCommand"
+	DEPENDS ${PROJECT_NAME})
+    set_target_properties(${TARGET_NAME} PROPERTIES EXCLUDE_FROM_ALL TRUE)
 endfunction()
