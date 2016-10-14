@@ -1,4 +1,4 @@
-# frc-cpp-project-skeleton [![Build Status](https://travis-ci.org/Team5499/frc-cpp-project-skeleton.svg?branch=master)](https://travis-ci.org/Team5499/frc-cpp-project-skeleton)
+# frc-cpp-project-skeleton
 This is a skeleton for FRC C++ projects using CMake.  Fork me!  Example usage:
 ```
 cmake .
